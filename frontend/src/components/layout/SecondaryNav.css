@@ -1,0 +1,30 @@
+.secondary-nav {
+  background-color: white;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.secondary-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.secondary-nav li a {
+  color: #555;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.secondary-nav li a:hover {
+  color: #0054a6;
+}
+
+.secondary-nav li a.active {
+  background-color: #0054a6;
+  color: white;
+}
