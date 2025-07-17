@@ -63,7 +63,7 @@ public class SecurityConfig
 	        )
 			 .oauth2Login(oauth2 -> oauth2
 					.loginPage("/login")
-					.defaultSuccessUrl("http://localhost:3000/login-success", true)
+					.defaultSuccessUrl("http://localhost:3000/oauth2-redirect", true)
 					.failureUrl("http://localhost:3000/login?error")
 					.authorizationEndpoint(authorization -> authorization
 						.baseUri("/oauth2/authorization")
