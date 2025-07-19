@@ -58,11 +58,41 @@ const Register = () => {
     setStep(2);
   };
 
-  const handleVerificationMethod = (method) => {
-    setVerificationMethod(method);
-    setStep(3); // Move to OTP verification
+
+  const sendOTPRequest = async (method) => {
+    try {
+      const identifier = method === 'email' ? formData.email : formData.mobile;
+      const response = await fetch('http://localhost:8080/auth/send-otp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `method=${method}&identifier=${encodeURIComponent(identifier)}`
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send OTP');
+      }
+
+      // Navigate to OTP verification page with state
+      navigate('/verify-otp', { 
+        state: { 
+          method,
+          identifier,
+          userData: formData // Pass the form data for registration after verification
+        }
+      });
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
+  const handleVerificationMethod = (method) => {
+    setVerificationMethod(method);
+    sendOTPRequest(method);
+  };
+
+  
   return (
     <div className="register-page">
       {/* Logos Section */}
