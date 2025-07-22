@@ -6,6 +6,8 @@ import AdminDashboard from './components/Dashboard/AdminDashboard';
 import UserDashboard from './components/Dashboard/UserDashboard';
 import authService from './services/auth';
 import OAuth2RedirectHandler from './components/Auth/OAuth2RedirectHandler';
+import VerifyOTP from './components/Auth/VerifyOTP';
+
 
 function App() {
   const PrivateRoute = ({ children, requiredRole }) => {
@@ -28,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/oauth2-redirect" element={<OAuth2RedirectHandler />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
 
         <Route 
           path="/admin-dashboard" 
