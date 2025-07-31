@@ -36,6 +36,12 @@ function PrimaryNav() {
             <span>Applications</span>
           </NavLink>
         </li>
+         <li>
+          <NavLink to="/employees" activeClassName="active">
+            <i className="icon-employees"></i>
+            <span>Employees</span>
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

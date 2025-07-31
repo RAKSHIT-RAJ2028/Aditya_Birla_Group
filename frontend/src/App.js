@@ -7,6 +7,7 @@ import UserDashboard from './components/Dashboard/UserDashboard';
 import authService from './services/auth';
 import OAuth2RedirectHandler from './components/Auth/OAuth2RedirectHandler';
 import VerifyOTP from './components/Auth/VerifyOTP';
+import EmployeesPage from './components/model/EmployeesPage';
 
 
 function App() {
@@ -45,6 +46,14 @@ function App() {
           element={
             <PrivateRoute requiredRole="ROLE_USER">
               <UserDashboard />
+            </PrivateRoute>
+          } 
+        />
+         <Route 
+          path="/employees" 
+          element={
+            <PrivateRoute>
+              <EmployeesPage />
             </PrivateRoute>
           } 
         />
