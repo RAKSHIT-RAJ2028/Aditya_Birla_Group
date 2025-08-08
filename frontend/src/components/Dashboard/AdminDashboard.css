@@ -11,7 +11,7 @@
 
 .content-area {
   flex: 1;
-  margin-left: 220px; /* Primary nav width */
+  /* margin-left: 220px;  */
   padding: 20px;
   background-color: #f5f7fa;
   min-height: calc(100vh - 70px);

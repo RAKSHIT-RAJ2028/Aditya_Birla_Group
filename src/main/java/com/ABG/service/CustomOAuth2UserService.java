@@ -13,12 +13,21 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.ABG.Repository.UserRepository;
+import com.ABG.model.Branch;
+import com.ABG.model.Company;
 import com.ABG.model.User;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UserRepository userRepository;
+    
+    // Try to use BranchRepository and CompanyRepository in future
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public CustomOAuth2UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -44,12 +53,24 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 user = userRepository.save(user);
             }
         } else {
+        	
+        	// Load default branch and company using EntityManager // Try to use BranchRepository and CompanyRepository in future
+            Branch defaultBranch = entityManager.find(Branch.class, 1L);
+            Company defaultCompany = entityManager.find(Company.class, 1L);
+
+            if (defaultBranch == null || defaultCompany == null) {
+                throw new RuntimeException("Default branch or company with ID = 1 not found.");
+            }
+            
             user = new User();
             user.setUsername(email);
             user.setEmail(email);
             user.setName(name);
             user.setProvider(provider);
             user.setRole("ROLE_USER");
+            user.setBranch(defaultBranch);       // Set default branch
+            user.setCompany(defaultCompany);     // Set default company
+            
             user = userRepository.save(user);
         }
         
