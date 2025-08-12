@@ -1,9 +1,13 @@
 package com.ABG.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +26,19 @@ public class Company {
 	private String cin;
 	private String regdOffice;
 	
+	// Relationship 
+	
+	@OneToMany(mappedBy= "company", cascade=CascadeType.ALL)
+	private List<SalaryComponent> salaryComponent;
+	
+	@OneToMany(mappedBy= "company", cascade=CascadeType.ALL)
+	private List<SalaryPayout> salaryPayout;
+
+	@OneToMany(mappedBy="company", cascade=CascadeType.ALL)
+	private List<Ctc> ctc;
+	
+	
+	// Parameterized constructor
 	public Company(Long id, String name, String headOffice, String email, String website, String phone, String cin,
 			String regdOffice) {
 		
@@ -35,6 +52,7 @@ public class Company {
 		this.regdOffice = regdOffice;
 	}
 
+	// Default constructor
 	public Company() {
 	
 	}
