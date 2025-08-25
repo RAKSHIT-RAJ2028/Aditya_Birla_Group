@@ -57,7 +57,10 @@ public class SecurityConfig
 	        .csrf(AbstractHttpConfigurer::disable)
 	        .authorizeHttpRequests(auth -> auth
 	            // .requestMatchers("/auth/**").permitAll()
-				.requestMatchers("/auth/send-otp", "/auth/verify-otp", "/auth/**", "/register", "/login","/api/employees/import","/api/employees/**").permitAll()
+				.requestMatchers("/auth/send-otp", "/auth/verify-otp", "/auth/**", 
+						         "/register", "/login",
+						         "/api/employees/import","/api/employees/**" ,
+						         "api/salary-component/**","api/salary-component", "api/salary-component/id").permitAll()
 	            .requestMatchers("/admin/**").hasRole("ADMIN")
 	            .requestMatchers("/user/**").hasRole("USER")
 	            .anyRequest().authenticated()
