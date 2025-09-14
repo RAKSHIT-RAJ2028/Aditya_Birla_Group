@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -68,6 +69,18 @@ public class Employee {
     private String city;
     private String bankName;
     private String address;
+    
+    // Relationship
+    @OneToMany(mappedBy = "employee" , cascade = CascadeType.ALL)
+    private List<SalarySlip> salarySlip;
+    
+
+    @OneToMany(mappedBy = "employee" , cascade = CascadeType.ALL)
+    private List<SalaryPayout> salaryPayout;
+    
+    @OneToMany(mappedBy= "employee", cascade = CascadeType.ALL)
+    private List<Ctc> ctcs;
+    
     
     public LocalDate toLocalDate(Date date) {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
