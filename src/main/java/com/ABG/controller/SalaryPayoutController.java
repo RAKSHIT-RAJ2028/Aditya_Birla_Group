@@ -3,8 +3,12 @@ package com.ABG.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,18 +53,28 @@ public class SalaryPayoutController
 	}
 	
 	// ---------------------------PUT Mapping--------------------------
-		
-		
-		
-		
+	@PutMapping
+	public ResponseEntity<SalaryPayout> update(@PathVariable Long id , @RequestBody SalaryPayout salaryPayout)
+	{
+		return ResponseEntity.ok(spService.update(id, salaryPayout));
+	}
+	
 		
 		
 	// ---------------------------POST Mapping--------------------------
-		
-		
-		
+	@PostMapping
+	public ResponseEntity<SalaryPayout> create(@RequestBody SalaryPayout salaryPayout)
+	{
+		return ResponseEntity.ok(spService.create(salaryPayout));
+	}
 		
 		
 	// ---------------------------DELETE Mapping--------------------------
+	@DeleteMapping
+	public ResponseEntity<Void> delete(@PathVariable Long id)
+	{
+		spService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }

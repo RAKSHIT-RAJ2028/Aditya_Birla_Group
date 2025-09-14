@@ -46,7 +46,7 @@ public class SalarySlip
 	@Column(name="total_working_days")
 	private int totalWorkingDays;
 	
-	@Column(name="taoal_leaves_taken")
+	@Column(name="total_leaves_taken")
 	private int totalLeavesTaken;
 	
 	@Column(name="total_present")

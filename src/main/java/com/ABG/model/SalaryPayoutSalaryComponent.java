@@ -29,6 +29,8 @@ public class SalaryPayoutSalaryComponent
 	
 	private  BigDecimal amount;
 
+	// Getter Setters
+	
 	public Long getId() {
 		return id;
 	}

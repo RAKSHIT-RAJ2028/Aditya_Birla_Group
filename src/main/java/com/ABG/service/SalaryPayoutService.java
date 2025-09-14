@@ -34,19 +34,32 @@ public class SalaryPayoutService
 	}
 	
 	// ---------------------------PUT Method--------------------------
-	
-	
-	
-	
-	
+	public SalaryPayout update(Long id, SalaryPayout updated) 
+	{
+		return spRepository.findById(id).map(existing -> {
+			existing.setEmployee(updated.getEmployee());
+			existing.setAccountNumber(updated.getAccountNumber());
+			existing.setAmount(updated.getAmount());
+			existing.setDescription(updated.getDescription());
+			existing.setMonth(updated.getMonth());
+			existing.setCompany(updated.getCompany());
+			return spRepository.save(existing);
+			
+	    }).orElseThrow(() -> new RuntimeException("Salary Payout not found"));
+	}
 	
 	// ---------------------------POST Method--------------------------
 	
-	
-	
-	
+	public SalaryPayout create(SalaryPayout salaryPayout)
+	{
+		return spRepository.save(salaryPayout);
+	}
 	
 	// ---------------------------DELETE Method--------------------------
 
+	public void delete(Long id)
+	{
+		spRepository.deleteById(id);
+	}
 	
 }

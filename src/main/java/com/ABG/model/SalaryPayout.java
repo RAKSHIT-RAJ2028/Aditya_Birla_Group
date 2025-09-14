@@ -24,7 +24,7 @@ public class SalaryPayout
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	// Relationship employee_id
 	@ManyToOne
 	@JoinColumn(name="employee_id")
@@ -129,10 +129,13 @@ public class SalaryPayout
 		this.month = month;
 	}
 	
-	
+	public Company getCompany() {
+		return company;
+	}
 
-
-	
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	
 
 }
